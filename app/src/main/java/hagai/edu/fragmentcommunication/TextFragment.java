@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
  * to handle interaction events.
  */
 public class TextFragment extends Fragment {
+    private TextView tvHello;
 
     private OnTextChangeListener mListener;
 
@@ -28,7 +30,9 @@ public class TextFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_text, container, false);
+        View v = inflater.inflate(R.layout.fragment_text, container, false);
+        tvHello = (TextView) v.findViewById(R.id.tvHello);
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -53,6 +57,10 @@ public class TextFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void setTextColor(int color) {
+        tvHello.setTextColor(color);
     }
 
     /**
