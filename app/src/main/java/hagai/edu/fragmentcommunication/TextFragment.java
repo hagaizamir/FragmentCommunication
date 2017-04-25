@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TextFragment.OnFragmentInteractionListener} interface
+ * {@link TextFragment.OnTextChangeListener} interface
  * to handle interaction events.
  */
 public class TextFragment extends Fragment {
 
-    private onTextChangeListener mListener;
+    private OnTextChangeListener mListener;
 
     public TextFragment() {
         // Required empty public constructor
@@ -32,20 +32,20 @@ public class TextFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void ontTextChange(Uri uri) {
+    public void ontTextChange(String text) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.OnTextChange(text);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnTextChangeListener) {
+            mListener = (OnTextChangeListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnTextChangedListener");
         }
     }
 
@@ -65,7 +65,7 @@ public class TextFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface onTextChangeListener {
+    public interface OnTextChangeListener {
         // TODO: Update argument type and name
         void OnTextChange(String text);
     }
